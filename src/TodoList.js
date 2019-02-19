@@ -8,6 +8,7 @@ class TodoList extends Component {
       list: []
     }
     this.handleChange = this.handleChange.bind(this);
+    this.handleButtnClick = this.handleButtnClick.bind(this);
   }
 
   render() {
@@ -15,11 +16,14 @@ class TodoList extends Component {
       <>
         <div>
           <input type="text" value={this.state.inputValue} onChange={this.handleChange} />
-          <button>提交</button>
+          <button onClick={this.handleButtnClick}>提交</button>
         </div>
         <ul>
-          <li>学习react</li>
-          <li>学习英语</li>
+          {
+            this.state.list.map((item, index) => {
+              return (<li key={index} onClick={this.handleDelete.bind(this, index)}>{item}</li>);
+            })
+          }
         </ul>
       </>
     );
@@ -28,6 +32,21 @@ class TodoList extends Component {
   handleChange(e) {
     this.setState({
       inputValue: e.target.value
+    });
+  }
+
+  handleButtnClick() {
+    this.setState({
+      list: [...this.state.list, this.state.inputValue],
+      inputValue: ''
+    })
+  }
+
+  handleDelete(index) {
+    const list = [...this.state.list];
+    list.splice(index, 1);
+    this.setState({
+      list: list
     });
   }
 }
