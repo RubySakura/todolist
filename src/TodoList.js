@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './style.css';
+import TodoItem from './TodoItem';
 
 class TodoList extends Component {
   constructor(props) {
@@ -10,6 +11,7 @@ class TodoList extends Component {
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleButtnClick = this.handleButtnClick.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   render() {
@@ -22,7 +24,15 @@ class TodoList extends Component {
         <ul>
           {
             this.state.list.map((item, index) => {
-              return (<li key={index} onClick={this.handleDelete.bind(this, index)}>{item}</li>);
+              // return (<li key={index} onClick={this.handleDelete.bind(this, index)}>{item}</li>);
+              return (
+                <TodoItem
+                  content={item}
+                  key={index}
+                  index={index}
+                  deleteItem={this.handleDelete}
+                />
+              )
             })
           }
         </ul>
