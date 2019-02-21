@@ -15,6 +15,7 @@ class TodoList extends Component {
   }
 
   render() {
+    console.log('parent render');
     return (
       <>
         <div>
@@ -66,6 +67,32 @@ class TodoList extends Component {
       list.splice(index, 1);
       return {list};
     });
+  }
+
+
+  componentWillMount() {
+    console.log('parent componentWillMount');
+  }
+
+  componentDidMount() {
+    console.log('parent componentDidMount');
+  }
+
+  componentWillReceiveProps() {
+    console.log('parent componentWillReceiveProps');
+}
+
+  shouldComponentUpdate() {
+    console.log('parent shouldComponentUpdate');
+    return true;
+  }
+
+  componentWillUpdate() {
+    console.log('parent componentWillUpdate');
+  }
+
+  componentDidUpdate() {
+    console.log('parent componentDidUpdate');
   }
 }
 
