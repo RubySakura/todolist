@@ -23,6 +23,7 @@ class TodoList extends Component {
             value={this.state.inputValue}
             onChange={this.handleChange}
             className='input'
+            ref={(input) => {this.input = input}}
           />
           <button onClick={this.handleButtnClick}>提交</button>
         </div>
@@ -47,10 +48,8 @@ class TodoList extends Component {
   }
 
   handleChange(e) {
-    // 此处存在一个疑问，为什么不可以直接使用e
-    const value = e.target.value; 
     this.setState((prevState) => ({
-      inputValue: value
+      inputValue: this.input.value
     }));
   }
 
