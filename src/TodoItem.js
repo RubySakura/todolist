@@ -6,8 +6,17 @@ class TodoItem extends Component {
         super(props);
         this.handleClick = this.handleClick.bind(this);
     }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        if(nextProps.content !== this.props.content) {
+            return true;
+        } else {
+            return false;
+        }
+        
+    }
+
     render() {
-        console.log('child render', this.props.index);
         const { content, test } = this.props;
         return (
             <li onClick={this.handleClick}>{test} - {content}</li>
@@ -17,36 +26,6 @@ class TodoItem extends Component {
     handleClick() {
         const { deleteItem, index } = this.props;
         deleteItem(index);
-    }
-
-    
-    componentWillMount() {
-        console.log('child componentWillMount', this.props.index);
-    }
-
-    componentDidMount() {
-        console.log('child componentDidMount', this.props.index);
-    }
-
-    componentWillReceiveProps() {
-        console.log('child componentWillReceiveProps', this.props.index);
-    }
-
-    shouldComponentUpdate() {
-        console.log('child shouldComponentUpdate', this.props.index);
-        return true;
-    }
-
-    componentWillUpdate() {
-        console.log('child componentWillUpdate', this.props.index);
-    }
-
-    componentDidUpdate() {
-        console.log('child componentDidUpdate', this.props.index);
-    }
-
-    componentWillUnmount() {
-        console.log('child componentWillUnmount', this.props.index);
     }
 
 }

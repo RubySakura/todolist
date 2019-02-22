@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TodoItem from './TodoItem';
+import axios from 'axios';
 import './style.css';
 
 class TodoList extends Component {
@@ -15,7 +16,6 @@ class TodoList extends Component {
   }
 
   render() {
-    console.log('parent render');
     return (
       <>
         <div>
@@ -69,30 +69,10 @@ class TodoList extends Component {
     });
   }
 
-
-  componentWillMount() {
-    console.log('parent componentWillMount');
-  }
-
   componentDidMount() {
-    console.log('parent componentDidMount');
-  }
-
-  componentWillReceiveProps() {
-    console.log('parent componentWillReceiveProps');
-}
-
-  shouldComponentUpdate() {
-    console.log('parent shouldComponentUpdate');
-    return true;
-  }
-
-  componentWillUpdate() {
-    console.log('parent componentWillUpdate');
-  }
-
-  componentDidUpdate() {
-    console.log('parent componentDidUpdate');
+    axios.get('/api/todolist')
+    .then(() => {alert('succ')})
+    .catch(() => {alert('error')});
   }
 }
 
